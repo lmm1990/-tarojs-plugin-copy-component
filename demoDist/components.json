@@ -1,0 +1,10 @@
+[
+	{
+		"from": "/componentA",
+		"to": "/components"
+	},
+	{
+		"from": "/componentB",
+		"to": "/components"
+	}
+]
