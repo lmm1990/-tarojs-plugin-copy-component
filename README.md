@@ -1,4 +1,4 @@
-# @tarojs/plugin-copy-component
+# taro-plugin-copy-component
 
 > Taro复制组件插件
 
@@ -7,9 +7,9 @@
 在 Taro 项目根目录下安装
 
 ```bash
-yarn add @tarojs/plugin-copy-component
+yarn add taro-plugin-copy-component -D
 # OR
-$ npm install @tarojs/plugin-copy-component --save
+$ npm install taro-plugin-copy-component --save
 ```
 
 ## 使用
@@ -26,7 +26,7 @@ const config = {
   plugins: [
     ...其余插件
 
-    '@tarojs/plugin-copy-component'
+    'taro-plugin-copy-component'
   ]
   ...
 }
