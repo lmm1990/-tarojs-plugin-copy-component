@@ -24,9 +24,9 @@ $ npm install taro-plugin-copy-component --save
 const config = {
   ...
   plugins: [
-    ...其余插件
-
-    'taro-plugin-copy-component'
+    ['taro-plugin-copy-component', {
+      componentsPath: path.resolve(__dirname, '../node_modules/taro-yui-vue/src/components')
+    }]
   ]
   ...
 }
@@ -64,7 +64,7 @@ export interface ComponentConfig{
     from:string
 
     /**
-     * 目标路径
+     * 目标路径，相对于components.json文件的路径
      */
     to:string
 }
