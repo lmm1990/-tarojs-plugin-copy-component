@@ -15,7 +15,7 @@ export function exists(filePath: string): boolean {
  * 
  * @param filePath 文件/目录路径
  */
-function isDirectory(filePath: string): boolean {
+export function isDirectory(filePath: string): boolean {
 	return fs.statSync(filePath).isDirectory();
 }
 
@@ -38,7 +38,11 @@ export function copyFile(formPath: string, toPath: string) {
 	if (fromPathIsDir && toPath[toPath.length - 1] != '/') {
 		toPath = `${toPath}/`
 	}
-
+	if(!fromPathIsDir){
+		//复制文件
+		fs.copyFileSync(formPath, `${toPath}/${formPath.substring(formPath.lastIndexOf('/') + 1)}`)
+		return;
+	}
 	const fromFilePathList: string[] = readFilePathList(formPath)
 
 	let toDirList: Set<string> = new Set<string>()
@@ -123,6 +127,17 @@ export function delDir(filePath: string) {
 		}
 	});
 	fs.rmdirSync(filePath);
+}
+
+/**
+ * 删除文件
+ * @param filePath 文件路径
+ */
+export function delFile(filePath:string){
+	if(!exists(filePath)){
+		return
+	}
+	fs.unlinkSync(filePath)
 }
 
 /**

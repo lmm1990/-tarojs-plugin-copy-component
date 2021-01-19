@@ -1,6 +1,6 @@
 {
   "name": "taro-plugin-copy-component",
-  "version": "0.0.3",
+  "version": "0.0.4",
   "description": "Taro复制组件插件",
   "main": "./index.js",
   "scripts": {

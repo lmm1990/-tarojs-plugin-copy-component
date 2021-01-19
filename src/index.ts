@@ -2,7 +2,7 @@ const glob = require("glob")
 import { readFileSync } from 'fs'
 import { IPluginContext } from './types/@tarojs/service/types'
 import { CopyComponent } from './types/CopyComponent'
-import { delDir, copyFile, makeDir } from './FileUtil'
+import { delDir, copyFile, makeDir, isDirectory,delFile } from './FileUtil'
 
 export default (ctx: IPluginContext, pluginOpts: CopyComponent.Option) => {
 
@@ -61,10 +61,15 @@ function copyComponents(configPath: string, fromPath: string) {
 		}
 		const tempFromPath = `${fromPath}${item.from}`
 		let tempToPath = `${toPath}${item.to}`
-		tempToPath = `${tempToPath}/${tempFromPath.substring(tempFromPath.lastIndexOf('/') + 1)}`
-		//删除target目录
+		if (isDirectory(tempFromPath)) {
+			tempToPath = `${tempToPath}/${tempFromPath.substring(tempFromPath.lastIndexOf('/') + 1)}`
+			//删除target目录
 		delDir(tempToPath)
 		makeDir(tempToPath)
+		}else{
+			delFile(`${tempToPath}/${tempFromPath.substring(tempFromPath.lastIndexOf('/') + 1)}`)
+			tempToPath = `${tempToPath}/`
+		}
 		copyFile(tempFromPath, tempToPath)
 		console.log(`copy plugin from:${tempFromPath} to:${tempToPath}`)
 	})
